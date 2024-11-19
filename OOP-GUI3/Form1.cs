@@ -13,7 +13,7 @@ namespace OOP_GUI3
 {
     public partial class Form1 : Form
     {
-        private Total total = new Total();
+        Total total = new Total();
         public Form1()
         {
             InitializeComponent();
@@ -26,18 +26,15 @@ namespace OOP_GUI3
 
         private void btnCalculateSelection_Click(object sender, EventArgs e)
         {
-            // Classes
-            Constant constant = new Constant();
             InitialOrder initialOrder = new InitialOrder();
 
-            // Input Quantity
             while (true)
             {
-                if (double.TryParse(txtQuantity.Text, out double quantity))
+                if (double.TryParse(txtQuantity.Text, out double input))
                 {
-                    if (quantity > 0)
+                    if (input > 0)
                     {
-                        initialOrder.quantity = quantity;
+                        initialOrder.quantity = input;
                         break;
                     }
                     else
@@ -51,7 +48,6 @@ namespace OOP_GUI3
                 else if (txtQuantity.Text == string.Empty)
                 {
                     MessageBox.Show("Please enter the quantity.");
-                    txtQuantity.Text = string.Empty;
                     txtQuantity.Focus();
                     return;
                 }
@@ -64,100 +60,36 @@ namespace OOP_GUI3
                 }
             }
 
-            // Coffee Selection
             while (true)
             {
-                if (rbCapuccino.Checked || rbEspresso.Checked || rbLatte.Checked || rbLatte.Checked || rbIcedLatte.Checked || rbIcedCapuccino.Checked)
-                {
-                    if (rbCapuccino.Checked)
-                    {
-                        initialOrder.itemAmount += initialOrder.quantity * constant.capuccino;
-                        total.subtotal += initialOrder.itemAmount;
-                        total.countTotalDollarAmount += initialOrder.itemAmount;
-                        if (cbTakeout.Checked)
-                        {
-                            total.tax += initialOrder.itemAmount * constant.taxRate;
-                            total.countTotalDollarAmount += initialOrder.itemAmount * constant.taxRate;
-                        }
-                    }
-                    else if (rbEspresso.Checked)
-                    {
-                        initialOrder.itemAmount += initialOrder.quantity * constant.espresso;
-                        total.subtotal += initialOrder.itemAmount;
-                        total.countTotalDollarAmount += initialOrder.itemAmount;
-                        if (cbTakeout.Checked)
-                        {
-                            total.tax += initialOrder.itemAmount * constant.taxRate;
-                            total.countTotalDollarAmount += initialOrder.itemAmount * constant.taxRate;
-                        }
-                    }
-                    else if (rbLatte.Checked)
-                    {
-                        initialOrder.itemAmount += initialOrder.quantity * constant.latte;
-                        total.subtotal += initialOrder.itemAmount;
-                        total.countTotalDollarAmount += initialOrder.itemAmount;
-                        if (cbTakeout.Checked)
-                        {
-                            total.tax += initialOrder.itemAmount * constant.taxRate;
-                            total.countTotalDollarAmount += initialOrder.itemAmount * constant.taxRate;
-                        }
-                    }
-                    else if (rbIcedLatte.Checked)
-                    {
-                        initialOrder.itemAmount += initialOrder.quantity * constant.icedLatte;
-                        total.subtotal += initialOrder.itemAmount;
-                        total.countTotalDollarAmount += initialOrder.itemAmount;
-                        if (cbTakeout.Checked)
-                        {
-                            total.tax += initialOrder.itemAmount * constant.taxRate;
-                            total.countTotalDollarAmount += initialOrder.itemAmount * constant.taxRate;
-                        }
-                    }
-                    else if (rbIcedCapuccino.Checked)
-                    {
-                        initialOrder.itemAmount += initialOrder.quantity * constant.icedCapuccino;
-                        total.subtotal += initialOrder.itemAmount;
-                        total.countTotalDollarAmount += initialOrder.itemAmount;
-                        if (cbTakeout.Checked)
-                        {
-                            total.tax += initialOrder.itemAmount * constant.taxRate;
-                            total.countTotalDollarAmount += initialOrder.itemAmount * constant.taxRate;
-                        }
-                    }
-                    break;
-                }
-                else
-                {
-                    MessageBox.Show("Please select a coffee.");
-                    return;
-                }
+                if (rbCappuccino.Checked) { initialOrder.coffeeSelection(total, "cappuccino"); break; }
+                else if (rbEspresso.Checked) { initialOrder.coffeeSelection(total, "espresso"); break; }
+                else if (rbLatte.Checked) { initialOrder.coffeeSelection(total, "latte"); break; }
+                else if (rbIcedLatte.Checked) { initialOrder.coffeeSelection(total, "icedLatte"); break; }
+                else if (rbIcedCappuccino.Checked) { initialOrder.coffeeSelection(total, "icedCappuccino"); break; }
+                else { MessageBox.Show("Please select a coffee."); return; }
             }
 
-            // 1st Container - Result
-            txtItemAmount.Text = initialOrder.itemAmount.ToString("C2");
-            // 2nd Container - Result
-            txtSubtotal.Text = total.subtotal.ToString("C2");
-            txtTax.Text = total.tax.ToString("C2");
+            if (cbTakeout.Checked) { initialOrder.ifTakeout(total); } // if takeout
 
+            txtItemAmount.Text = initialOrder.itemAmount.ToString("C2"); // item amount result
+            txtSubtotal.Text = total.subtotal.ToString("C2"); // subtotal result
+            txtTax.Text = total.tax.ToString("C2"); // tax result
             total.totalDue = total.subtotal + total.tax;
-            txtTotalDue.Text = total.totalDue.ToString("C2");
+            txtTotalDue.Text = total.totalDue.ToString("C2"); // total due result
 
-            // Summary-related
-            total.countOrders += initialOrder.quantity;
-            //total.countTotalDollarAmount += ;
+            total.countOrders += initialOrder.quantity; // increment order count
 
-            // Button enable/disable
             btnCalculateSelection.Enabled = false;
             btnClearForNextItem.Enabled = true;
-            groupBox1.Focus();
-            // Disabled
             txtQuantity.Enabled = false;
             cbTakeout.Enabled = false;
-            rbCapuccino.Enabled = false;
+            rbCappuccino.Enabled = false;
             rbEspresso.Enabled = false;
             rbLatte.Enabled = false;
             rbIcedLatte.Enabled = false;
-            rbIcedCapuccino.Enabled = false;
+            rbIcedCappuccino.Enabled = false;
+            groupBox1.Focus();
         }
 
         private void btnClearForNextItem_Click(object sender, EventArgs e)
@@ -166,20 +98,20 @@ namespace OOP_GUI3
             txtQuantity.Text = string.Empty;
             cbTakeout.Checked = false;
             txtItemAmount.Text = string.Empty;
-            rbCapuccino.Checked = false;
+            rbCappuccino.Checked = false;
             rbEspresso.Checked = false;
             rbLatte.Checked = false;
             rbIcedLatte.Checked = false;
-            rbIcedCapuccino.Checked = false;
+            rbIcedCappuccino.Checked = false;
 
             // Enabled
             txtQuantity.Enabled = true;
             cbTakeout.Enabled = true;
-            rbCapuccino.Enabled = true;
+            rbCappuccino.Enabled = true;
             rbEspresso.Enabled = true;
             rbLatte.Enabled = true;
             rbIcedLatte.Enabled = true;
-            rbIcedCapuccino.Enabled = true;
+            rbIcedCappuccino.Enabled = true;
 
             // Button enable/disable
             btnClearForNextItem.Enabled = false;
@@ -191,7 +123,6 @@ namespace OOP_GUI3
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Disable clear button at first start
             btnClearForNextItem.Enabled = false;
         }
 
@@ -201,10 +132,11 @@ namespace OOP_GUI3
             if (result == DialogResult.Yes)
             {
                 btnClearForNextItem_Click(sender, e);
+                
                 txtSubtotal.Text = string.Empty;
                 txtTax.Text = string.Empty;
                 txtTotalDue.Text = string.Empty;
-
+                
                 total.subtotal = 0;
                 total.tax = 0;
                 total.totalDue = 0;
@@ -213,8 +145,8 @@ namespace OOP_GUI3
 
         private void btnSummary_Click(object sender, EventArgs e)
         {
-            total.showAverageSale(total);
-            MessageBox.Show($"Number of orders: {total.countOrders}\nTotal dollar amount: {total.countTotalDollarAmount:C2}\nAverage sale amount per order: {total.countAverageSale:C2}");
+            total.summaryAverageSale(total);
+            total.summaryMessageBox();
         }
     }
 }

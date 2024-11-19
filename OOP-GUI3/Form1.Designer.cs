@@ -30,11 +30,11 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbIcedCapuccino = new System.Windows.Forms.RadioButton();
+            this.rbIcedCappuccino = new System.Windows.Forms.RadioButton();
             this.rbIcedLatte = new System.Windows.Forms.RadioButton();
             this.rbLatte = new System.Windows.Forms.RadioButton();
             this.rbEspresso = new System.Windows.Forms.RadioButton();
-            this.rbCapuccino = new System.Windows.Forms.RadioButton();
+            this.rbCappuccino = new System.Windows.Forms.RadioButton();
             this.txtItemAmount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClearForNextItem = new System.Windows.Forms.Button();
@@ -76,11 +76,11 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.rbIcedCapuccino);
+            this.groupBox2.Controls.Add(this.rbIcedCappuccino);
             this.groupBox2.Controls.Add(this.rbIcedLatte);
             this.groupBox2.Controls.Add(this.rbLatte);
             this.groupBox2.Controls.Add(this.rbEspresso);
-            this.groupBox2.Controls.Add(this.rbCapuccino);
+            this.groupBox2.Controls.Add(this.rbCappuccino);
             this.groupBox2.Location = new System.Drawing.Point(318, 33);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(181, 139);
@@ -88,16 +88,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Coffee Selections";
             // 
-            // rbIcedCapuccino
+            // rbIcedCappuccino
             // 
-            this.rbIcedCapuccino.AutoSize = true;
-            this.rbIcedCapuccino.Location = new System.Drawing.Point(22, 112);
-            this.rbIcedCapuccino.Name = "rbIcedCapuccino";
-            this.rbIcedCapuccino.Size = new System.Drawing.Size(100, 17);
-            this.rbIcedCapuccino.TabIndex = 4;
-            this.rbIcedCapuccino.TabStop = true;
-            this.rbIcedCapuccino.Text = "Iced Capuccino";
-            this.rbIcedCapuccino.UseVisualStyleBackColor = true;
+            this.rbIcedCappuccino.AutoSize = true;
+            this.rbIcedCappuccino.Location = new System.Drawing.Point(22, 112);
+            this.rbIcedCappuccino.Name = "rbIcedCappuccino";
+            this.rbIcedCappuccino.Size = new System.Drawing.Size(106, 17);
+            this.rbIcedCappuccino.TabIndex = 4;
+            this.rbIcedCappuccino.TabStop = true;
+            this.rbIcedCappuccino.Text = "Iced Cappuccino";
+            this.rbIcedCappuccino.UseVisualStyleBackColor = true;
             // 
             // rbIcedLatte
             // 
@@ -132,16 +132,16 @@
             this.rbEspresso.Text = "Espresso";
             this.rbEspresso.UseVisualStyleBackColor = true;
             // 
-            // rbCapuccino
+            // rbCappuccino
             // 
-            this.rbCapuccino.AutoSize = true;
-            this.rbCapuccino.Location = new System.Drawing.Point(22, 20);
-            this.rbCapuccino.Name = "rbCapuccino";
-            this.rbCapuccino.Size = new System.Drawing.Size(76, 17);
-            this.rbCapuccino.TabIndex = 0;
-            this.rbCapuccino.TabStop = true;
-            this.rbCapuccino.Text = "Capuccino";
-            this.rbCapuccino.UseVisualStyleBackColor = true;
+            this.rbCappuccino.AutoSize = true;
+            this.rbCappuccino.Location = new System.Drawing.Point(22, 20);
+            this.rbCappuccino.Name = "rbCappuccino";
+            this.rbCappuccino.Size = new System.Drawing.Size(82, 17);
+            this.rbCappuccino.TabIndex = 0;
+            this.rbCappuccino.TabStop = true;
+            this.rbCappuccino.Text = "Cappuccino";
+            this.rbCappuccino.UseVisualStyleBackColor = true;
             // 
             // txtItemAmount
             // 
@@ -330,11 +330,11 @@
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton rbIcedCapuccino;
+        private System.Windows.Forms.RadioButton rbIcedCappuccino;
         private System.Windows.Forms.RadioButton rbIcedLatte;
         private System.Windows.Forms.RadioButton rbLatte;
         private System.Windows.Forms.RadioButton rbEspresso;
-        private System.Windows.Forms.RadioButton rbCapuccino;
+        private System.Windows.Forms.RadioButton rbCappuccino;
         private System.Windows.Forms.TextBox txtItemAmount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnClearForNextItem;
